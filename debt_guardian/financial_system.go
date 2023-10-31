@@ -36,3 +36,15 @@ func (fs *FinancialSystem) queryMostMoneyOwed() string {
 	}
 	return person
 }
+
+func (fs *FinancialSystem) queryMostDebt() string {
+	maxDebt := 0
+	person := ""
+	for key, value := range fs.debts {
+		if value > maxDebt {
+			maxDebt = value
+			person = key
+		}
+	}
+	return person
+}
