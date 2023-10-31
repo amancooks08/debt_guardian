@@ -24,6 +24,9 @@ func System() (exit bool) {
 			if len(parts) == 3 {
 				personA := parts[0]
 				personB := parts[1]
+				if(personA == "" || personB == "") {
+					fmt.Println("invalid name entered, name can't be empty")
+				}
 				amount := 0
 				_, err := fmt.Sscanf(parts[2], "%d", &amount)
 				if err == nil {
@@ -34,12 +37,18 @@ func System() (exit bool) {
 			fmt.Println("Enter person:")
 			scanner.Scan()
 			person := scanner.Text()
+			if person == "" {	
+				fmt.Println("invalid name entered, name can't be empty")
+			}
 			debt := financialSystem.queryDebt(person)
 			fmt.Printf("%s owes %d\n", person, debt)
 		} else if command == "query_money_owed" {
 			fmt.Println("Enter person:")
 			scanner.Scan()
 			person := scanner.Text()
+			if person == "" {
+				fmt.Println("invalid name entered, name can't be empty")
+			}
 			moneyOwed := financialSystem.queryMoneyOwed(person)
 			fmt.Printf("%s is owed %d\n", person, moneyOwed)
 		} else if command == "query_most_money_owed" {
