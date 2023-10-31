@@ -47,3 +47,34 @@ func TestFinancialSystem_queryMoneyOwed(t *testing.T) {
 		t.Errorf("QueryMoneyOwed test 2 failed")
 	}
 }
+
+func TestFinancialSystem_queryMostMoneyOwned(t *testing.T) {
+	fs := NewFinancialSystem()
+
+    // Test 1: Query most money owed when there are no transactions
+    mostOwed := fs.queryMostMoneyOwed()
+    if mostOwed != "" {
+        t.Errorf("Test 1 failed, expected an empty string, got %s", mostOwed)
+    }
+
+    // Test 2: Query most money owed when there is a single transaction
+    fs.addTransaction("Alice", "Bob", 100)
+    mostOwed = fs.queryMostMoneyOwed()
+    if mostOwed != "Bob" {
+        t.Errorf("Test 2 failed, expected 'Bob', got %s", mostOwed)
+    }
+
+    // Test 3: Query most money owed when there are multiple transactions
+    fs.addTransaction("Charlie", "Bob", 150)
+    mostOwed = fs.queryMostMoneyOwed()
+    if mostOwed != "Bob" {
+        t.Errorf("Test 3 failed, expected 'Bob', got %s", mostOwed)
+    }
+
+    // Test 4: Query most money owed when there is a tie
+    fs.addTransaction("Dave", "Bob", 100)
+    mostOwed = fs.queryMostMoneyOwed()
+    if mostOwed != "Bob" {
+        t.Errorf("Test 4 failed, expected 'Bob', got %s", mostOwed)
+    }
+}

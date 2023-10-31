@@ -24,3 +24,15 @@ func (fs *FinancialSystem) queryDebt(person string) int {
 func (fs *FinancialSystem) queryMoneyOwed(person string) int {
 	return fs.moneyOwed[person]
 }
+
+func (fs *FinancialSystem) queryMostMoneyOwed() string {
+	maxOwed := 0
+	person := ""
+	for key, value := range fs.moneyOwed {
+		if value > maxOwed {
+			maxOwed = value
+			person = key
+		}
+	}
+	return person
+}
