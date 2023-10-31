@@ -30,7 +30,3 @@ users to input transactions and query the insights mentioned above.
 
 # Contributing
 If you would like to contribute to the game, feel free to submit a pull request. Please make sure to follow the coding standards and include appropriate comments in your code. Also, update the README.md file with any necessary changes.
-
-
-# License
-This project is licensed under the MIT License, which allows for free use, modification, and distribution of the code. However, please acknowledge the original authors if you use or modify this project for your own purposes.
