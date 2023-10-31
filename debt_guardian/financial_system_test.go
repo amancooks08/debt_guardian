@@ -17,3 +17,33 @@ func TestFinancialSystem_addTransaction(t *testing.T) {
         t.Errorf("AddTransaction test 2 failed")
     }
 }
+
+func TestFinancialSystem_queryDebt(t *testing.T) {
+	fs := NewFinancialSystem()
+
+	// Test 1: Query for a person with no transactions and check if the amount is 0
+	if fs.queryDebt("Alice") != 0 {
+		t.Errorf("QueryDebt test 1 failed")
+	}
+
+	// Test 2: Query for a person with transactions and check if the amount is correct
+	fs.addTransaction("Alice", "Bob", 100)
+	if fs.queryDebt("Alice") != 100 {
+		t.Errorf("QueryDebt test 2 failed")
+	}
+}
+
+func TestFinancialSystem_queryMoneyOwed(t *testing.T) {
+	fs := NewFinancialSystem()
+
+	// Test 1: Query for a person with no transactions and check if the amount is 0
+	if fs.queryMoneyOwed("Alice") != 0 {
+		t.Errorf("QueryMoneyOwed test 1 failed")
+	}
+
+	// Test 2: Query for a person with transactions and check if the amount is correct
+	fs.addTransaction("Alice", "Bob", 100)
+	if fs.queryMoneyOwed("Bob") != 100 {
+		t.Errorf("QueryMoneyOwed test 2 failed")
+	}
+}
